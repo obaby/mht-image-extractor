@@ -11,19 +11,16 @@
 @desc:
 """
 
-import logging
-import sys
-import re
-import quopri
 import base64
-import os
 import getopt
+import os
+import quopri
+import sys
 
 from pyfiglet import Figlet
 
 current_path = os.path.dirname(os.path.abspath(__file__))
 dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
-# print(dirname)
 current_path = dirname
 OUT_PATH = os.path.join(current_path, 'out')
 
@@ -37,12 +34,8 @@ def get_boundary(html_content):
 
 
 def make_dir(floder_name):
-    """
-    检测文件夹是否创建，没有创建则创建文件夹，创建了就跳过
-    """
-    # print('[C] 创建目录: ' + floder_name)
     PATH = os.path.join(OUT_PATH, floder_name)
-    if not os.path.exists(PATH):  # 检测是否有这个文件夹
+    if not os.path.exists(PATH):
         os.makedirs(PATH)
         os.chdir(PATH)
     return PATH
@@ -171,14 +164,14 @@ def main(argv):
         OUT_PATH = outputpath
 
     print('*' * 100)
-    print('[S] 开始下载任务......')
+    print('[S] 开始任务......')
     print('[C] 输入文件:' + input_file)
     print('[C] 输入目录:' + input_path)
     print('[C] 输出目录:' + OUT_PATH)
 
     if os.path.isfile(input_file):
         save_mht_all_images(input_file)
-        print('[D] 下载全部完成。')
+        print('[D] 导出全部完成。')
         print('*' * 100)
     else:
         if os.path.isdir(input_path):
@@ -187,7 +180,7 @@ def main(argv):
                     print('[S] 开始处理文件:', file)
                     save_mht_all_images(os.path.join(root, file))
                     print('-' * 80)
-            print('[D] 下载全部完成。')
+            print('[D] 导出全部完成。')
             print('*' * 100)
         else:
             print_usage()

@@ -48,7 +48,7 @@ Content-Type: text/css; charset=gbk; name=c.css
 Content-Location: http://a.10xjw.com/c.css  
 Content-Transfer-Encoding: 8bit  
 
-后续段落则开始记录相关的资源包括css 图片 js等所有的资源信息。所以mht文件的好处是一个文件记录了所有的内容，并且后续及时网络已经无法访问也可以正常的浏览
+后续段落则开始记录相关的资源包括css 图片 js等所有的资源信息。所以mht文件的好处是一个文件记录了所有的内容，并且即使原始网络资源已经无法访问也可以正常的浏览
 
 而我这里关注的则只有图片信息， 图片信息结构如下：
 

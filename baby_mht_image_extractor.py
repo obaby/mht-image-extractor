@@ -127,7 +127,7 @@ def print_usage():
     f = Figlet()
     print(f.renderText('obaby@mars'))
     print('mht image extractor by obaby')
-    print('Verson: 0.9.22')
+    print('Verson: 0.9.22.20')
     print('baby_mht_image_extractor -f <input mht file> -o <output path> -p <input path>')
     print('Need Arguments:')
     print('\t -f <input mht file>')

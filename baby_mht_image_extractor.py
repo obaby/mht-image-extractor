@@ -244,41 +244,33 @@ def main(argv):
     print('[C] 输入目录:' + input_path)
     print('[C] 输出目录:' + OUT_PATH)
 
-    btype = get_browser_type(input_file)
-    print('[B] 浏览器：', btype)
 
-    if btype == 'ie':
-        if os.path.isfile(input_file):
+    if os.path.isfile(input_file):
+        btype = get_browser_type(input_file)
+        print('[B] 浏览器：', btype)
+        if btype == 'ie':
             save_mht_all_images(input_file)
-            print('[D] 导出全部完成。')
-            print('*' * 100)
         else:
-            if os.path.isdir(input_path):
-                for root, dirs, files in os.walk(input_path):
-                    for file in files:
-                        print('[S] 开始处理文件:', file)
-                        save_mht_all_images(os.path.join(root, file))
-                        print('-' * 80)
-                print('[D] 导出全部完成。')
-                print('*' * 100)
-            else:
-                print_usage()
-    else:
-        if os.path.isfile(input_file):
             save_mht_all_images_chrome(input_file)
+        print('[D] 导出全部完成。')
+        print('*' * 100)
+    else:
+        if os.path.isdir(input_path):
+            for root, dirs, files in os.walk(input_path):
+                for file in files:
+                    if '.mht' in file:
+                        print('[S] 开始处理文件:', file)
+                        btype = get_browser_type(os.path.join(root, file))
+                        print('[B] 浏览器：', btype)
+                        if btype == 'ie':
+                            save_mht_all_images(os.path.join(root, file))
+                        else:
+                            save_mht_all_images_chrome(os.path.join(root, file))
+                        print('-' * 80)
             print('[D] 导出全部完成。')
             print('*' * 100)
         else:
-            if os.path.isdir(input_path):
-                for root, dirs, files in os.walk(input_path):
-                    for file in files:
-                        print('[S] 开始处理文件:', file)
-                        save_mht_all_images_chrome(os.path.join(root, file))
-                        print('-' * 80)
-                print('[D] 导出全部完成。')
-                print('*' * 100)
-            else:
-                print_usage()
+            print_usage()
 
 
 if __name__ == '__main__':

@@ -258,7 +258,7 @@ def main(argv):
         if os.path.isdir(input_path):
             for root, dirs, files in os.walk(input_path):
                 for file in files:
-                    if '.mht' in file:
+                    if '.mht' in str(file).lower():
                         print('[S] 开始处理文件:', file)
                         btype = get_browser_type(os.path.join(root, file))
                         print('[B] 浏览器：', btype)

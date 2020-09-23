@@ -199,7 +199,7 @@ def save_mht_all_images_chrome(input_path):
             elif 'Content-Location' in str(line):
                 content_location = str(line).split(':')[-1]
             else:
-                if b'\r\n' == line:
+                if b'\r\n' == line and content == b'':
                     pass
                     # print('blank line')
                 else:

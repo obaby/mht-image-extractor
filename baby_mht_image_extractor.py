@@ -199,7 +199,10 @@ def save_mht_all_images_chrome(input_path):
                     pass
                     # print('blank line')
                 else:
-                    content += line
+                    if len(line) >=2 and line[-2] == b'\r' and line[-1] == b'\n':
+                        content += line[0:-2]
+                    else:
+                        content += line
 
 
 def get_browser_type(input_path):

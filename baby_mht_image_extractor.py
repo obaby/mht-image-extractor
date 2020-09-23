@@ -178,7 +178,11 @@ def save_mht_all_images_chrome(input_path):
                     if 'base64' in content_transfer_encoding:
                         decoded_body = base64.b64decode(content)
                     if 'binary' in content_transfer_encoding:
-                        decoded_body = content
+                        # 修复文件尾的\r\n错误
+                        if len(content) > 2 and content[-2:] == b'\r\n':
+                            decoded_body = content[0:-2]
+                        else:
+                            decoded_body = content
                     if decoded_body:
                         save_image_file(decoded_body, sub_path_name, filename)
                     else:
@@ -199,10 +203,7 @@ def save_mht_all_images_chrome(input_path):
                     pass
                     # print('blank line')
                 else:
-                    if len(line) >=2 and line[-2] == b'\r' and line[-1] == b'\n':
-                        content += line[0:-2]
-                    else:
-                        content += line
+                    content += line
 
 
 def get_browser_type(input_path):

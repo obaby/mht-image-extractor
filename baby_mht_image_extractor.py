@@ -55,7 +55,7 @@ def make_dir(floder_name):
         PATH = floder_name
     if not os.path.exists(PATH):
         os.makedirs(PATH)
-        if "-o" in sys.argv:
+        if "-o" not in sys.argv:
             os.chdir(PATH)
     return PATH
 

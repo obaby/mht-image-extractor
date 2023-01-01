@@ -49,10 +49,14 @@ def get_boundary_chrome(f):
 
 
 def make_dir(floder_name):
-    PATH = os.path.join(OUT_PATH, floder_name)
+    if "-o" not in sys.argv:
+        PATH = os.path.join(OUT_PATH, floder_name)
+    else:
+        PATH = floder_name
     if not os.path.exists(PATH):
         os.makedirs(PATH)
-        os.chdir(PATH)
+        if "-o" in sys.argv:
+            os.chdir(PATH)
     return PATH
 
 
